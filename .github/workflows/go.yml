@@ -40,7 +40,7 @@ jobs:
       with:
         path: .
         format: spdx-json
-        output-file: sbom.json
+        artifact-name: sbom.json
 
     - name: Debug Generated SBOM Files
       run: ls -la
