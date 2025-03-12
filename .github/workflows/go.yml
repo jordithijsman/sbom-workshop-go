@@ -30,3 +30,16 @@ jobs:
       with:
         name: feather-binary
         path: feather
+
+    - name: Generate SBoM (Syft)
+      uses: anchore/sbom-action@bb716408e75840bbb01e839347cd213767269d4a
+      with:
+        path: .
+        format: spdx-json
+        output-file: sbom.spdx.json
+
+    - name: Upload SBoM Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: sbom
+        path: sbom.spdx.json
