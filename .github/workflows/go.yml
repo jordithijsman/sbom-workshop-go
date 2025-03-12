@@ -38,6 +38,9 @@ jobs:
         format: spdx-json
         output-file: sbom.json
 
+    - name: Debug Generated SBOM Files
+      run: ls -la
+
     - name: Upload SBoM Artifact
       uses: actions/upload-artifact@v4
       with:
