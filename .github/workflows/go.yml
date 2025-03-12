@@ -36,7 +36,7 @@ jobs:
         path: feather
 
     - name: Generate SBoM (Syft)
-      uses: anchore/sbom-action@bb716408e75840bbb01e839347cd213767269d4a
+      uses: anchore/sbom-action@v0.18.0
       with:
         path: .
         format: spdx-json
