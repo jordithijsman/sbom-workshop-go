@@ -43,4 +43,19 @@ jobs:
         artifact-name: syft-sbom.json
         output-file: syft-sbom.json
 
+    - name: Sign SBOM
+      env:
+        COSIGN_EXPERIMENTAL: 1
+      run: |
+        cosign sign-blob --oidc-issuer https://token.actions.githubusercontent.com \
+          --bundle syft-sbom.bundle \
+          --yes \
+          syft-sbom.json
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: cosign-bundle
+        path: syft-sbom.bundle
+
     
