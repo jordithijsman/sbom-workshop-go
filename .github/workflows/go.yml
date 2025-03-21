@@ -47,9 +47,6 @@ jobs:
     - name: Install Cosign
       uses: sigstore/cosign-installer@v3.8.1
 
-    - name: Show Files
-      run: ls -la
-
     - name: Sign SBOM
       env:
         COSIGN_EXPERIMENTAL: 1
@@ -64,5 +61,13 @@ jobs:
       with:
         name: cosign-bundle
         path: syft-sbom.bundle
+
+    - name: Verify signature (as a test)
+      run: |
+        cosign verify-blob \
+        --bundle syft-sbom.bundle \
+        --certificate-identity "https://github.com/jordithijsman/sbom-workshop-go/.github/workflows/go.yml@refs/heads/main" \
+        --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+        syft-sbom.json
 
     
