@@ -41,7 +41,7 @@ jobs:
         curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
 
     - name: Create SBOM
-      run: syft feather -o spdx-json > syft-sbom.json
+      run: syft feather-binary -o spdx-json > syft-sbom.json
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
