@@ -36,13 +36,13 @@ jobs:
         name: feather-binary
         path: feather
 
-    - name: Generate SBoM (Syft)
-      uses: anchore/sbom-action@v0.18.0
-      with:
-        path: feather
-        format: spdx-json
-        artifact-name: syft-sbom.json
-        output-file: syft-sbom.json
+    - name: Install syft
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+
+    - name: Create SBOM
+      run: syft feather -o spdx-json > syft-sbom.json
+
 
     - name: Install Cosign
       uses: sigstore/cosign-installer@v3.8.1
