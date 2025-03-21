@@ -39,7 +39,7 @@ jobs:
     - name: Generate SBoM (Syft)
       uses: anchore/sbom-action@v0.18.0
       with:
-        path: .
+        path: feather
         format: spdx-json
         artifact-name: syft-sbom.json
         output-file: syft-sbom.json
